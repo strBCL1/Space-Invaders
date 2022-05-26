@@ -4,12 +4,12 @@
 char map[20][20] = {
 	"###################",
 	"#                 #",
-	"#                 #",
-	"#                 #",
-	"#                 #",
-	"#                 #",
-	"#                 #",
-	"#                 #",
+	"#  @ @ @ @ @ @ @  #",
+	"#   @ @ @ @ @ @   #",
+	"#    @ @ @ @ @    #",
+	"#      @ @ @      #",
+	"#       @ @       #",
+	"#        @        #",
 	"#                 #",
 	"#                 #",
 	"#                 #",
@@ -42,47 +42,51 @@ int main()
 			for (int x = 0; x < 20; ++x) {
 
 				switch (map[y][x]) {
-				case 'W': {
+					case 'W': {
 
-					// <- key
-					if (GetAsyncKeyState(VK_LEFT) != 0) {
-						int newX = x - 1;
+						// <- key
+						if (GetAsyncKeyState(VK_LEFT) != 0) {
+							int newX = x - 1;
 
-						if (map[y][newX] == ' ') {
-							map[y][x--] = ' ';
-							map[y][newX] = 'W';
+							if (map[y][newX] == ' ') {
+								map[y][x--] = ' ';
+								map[y][newX] = 'W';
+							}
 						}
+
+						// -> key
+						if (GetAsyncKeyState(VK_RIGHT) != 0) {
+							int newX = x + 1;
+
+							if (map[y][newX] == ' ') {
+								map[y][x++] = ' ';
+								map[y][newX] = 'W';
+							}
+						}
+
+						// SPACEBAR key
+						if (GetAsyncKeyState(VK_SPACE) != 0) {
+							y--;
+							map[y][x] = '^';
+						}
+
+						break;
 					}
 
-					// -> key
-					if (GetAsyncKeyState(VK_RIGHT) != 0) {
-						int newX = x + 1;
-
-						if (map[y][newX] == ' ') {
-							map[y][x++] = ' ';
-							map[y][newX] = 'W';
-						}
-					}
-
-					// SPACEBAR key
-					if (GetAsyncKeyState(VK_SPACE) != 0) {
+					case '^': {
+						map[y][x] = ' ';
 						y--;
-						map[y][x] = '^';
+
+						if (map[y][x] != '#' && map[y][x] != '@') {
+							map[y][x] = '^';
+						}
+						else if (map[y][x] == '@') {
+							map[y][x] = ' ';
+						}
+
+						break;
 					}
 
-					break;
-				}
-
-				case '^': {
-					map[y][x] = ' ';
-					y--;
-
-					if (map[y][x] != '#') {
-						map[y][x] = '^';
-					}
-
-					break;
-				}
 				}
 			}
 		}
