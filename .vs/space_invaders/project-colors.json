@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "46966d89-f2c7-48cc-9d48-8a18af52e659": {
+      "ProjectGuid": "46966d89-f2c7-48cc-9d48-8a18af52e659",
+      "DisplayName": "space_invaders_project_console_cpp",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
