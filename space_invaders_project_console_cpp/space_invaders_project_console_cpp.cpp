@@ -90,9 +90,10 @@ int main()
 				}
 			}
 
-			Sleep(gamespeed);
 		}
-	}
+		Sleep(gamespeed);
 
+	}
 	return 0;
+
 }
