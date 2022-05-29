@@ -89,6 +89,10 @@ int main()
 
 				}
 			}
+
+			Sleep(gamespeed);
 		}
 	}
+
+	return 0;
 }
