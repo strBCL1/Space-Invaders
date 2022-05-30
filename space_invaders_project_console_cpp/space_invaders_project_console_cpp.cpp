@@ -1,15 +1,16 @@
 #include <iostream>
 #include "windows.h"
+#include "time.h"
 
 char map[20][20] = {
 	"###################",
 	"#                 #",
 	"#  @ @ @ @ @ @ @  #",
 	"#   @ @ @ @ @ @   #",
-	"#    @ @ @ @ @    #",
-	"#      @ @ @      #",
-	"#       @ @       #",
-	"#        @        #",
+	"#                 #",
+	"#                 #",
+	"#                 #",
+	"#                 #",
 	"#                 #",
 	"#                 #",
 	"#                 #",
@@ -25,18 +26,27 @@ char map[20][20] = {
 
 bool endgame = false;
 int gamespeed = 200;
+int randomNum;
+int maxHealth = 200;
+int yourHealth = maxHealth;
 
 int main()
 {
 
+
 	system("color 0a");
 
 	while (!endgame) {
+
+		srand(time(0));
+
 		system("cls");
 
 		for (int y = 0; y < 20; ++y) {
 			std::cout << map[y] << std::endl;
 		}
+
+		cout << "Health " << yourHealth << "/" << maxHealth;
 
 		for (int y = 0; y < 20; ++y) {
 			for (int x = 0; x < 20; ++x) {
@@ -85,15 +95,56 @@ int main()
 						}
 
 						break;
+
 					}
+
+					case '@': {
+
+						randomNum = rand() % 100 + 1;
+
+						if (randomNum == 1) {
+
+							y++;
+							Map[y][x] = '*';
+						}
+						break;
+					}
+
+					case '*': {
+
+						Map[y][x] = ' ';
+						y++;
+
+						if (Map[y][x] != '#' && Map[y][x] != 'W') {
+							Map[y][x] = '*';
+						}
+						else if (Map[y][x] == 'W') {
+
+							yourHealth -= 20;
+
+						}
+						break;
+					}
+
 
 				}
 			}
 
 		}
+		if (yourHealth <= 0) {
+
+			endgame = true;
+
+		}
 		Sleep(gamespeed);
 
 	}
+
+	system("cls");
+	cout << "You lost" << endl;
+
+	system("PAUSE");
+
 	return 0;
 
 }
