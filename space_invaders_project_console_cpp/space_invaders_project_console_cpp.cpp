@@ -141,7 +141,7 @@ int main()
 	}
 
 	system("cls");
-	std::cout << "You lost" << endl;
+	std::cout << "You lost" << std::endl;
 
 	system("PAUSE");
 
