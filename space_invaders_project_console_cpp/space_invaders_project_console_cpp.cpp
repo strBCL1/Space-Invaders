@@ -46,7 +46,7 @@ int main()
 			std::cout << map[y] << std::endl;
 		}
 
-		cout << "Health " << yourHealth << "/" << maxHealth;
+		std::cout << "Health " << yourHealth << "/" << maxHealth;
 
 		for (int y = 0; y < 20; ++y) {
 			for (int x = 0; x < 20; ++x) {
@@ -105,20 +105,20 @@ int main()
 						if (randomNum == 1) {
 
 							y++;
-							Map[y][x] = '*';
+							map[y][x] = '*';
 						}
 						break;
 					}
 
 					case '*': {
 
-						Map[y][x] = ' ';
+						map[y][x] = ' ';
 						y++;
 
-						if (Map[y][x] != '#' && Map[y][x] != 'W') {
-							Map[y][x] = '*';
+						if (map[y][x] != '#' && map[y][x] != 'W') {
+							map[y][x] = '*';
 						}
-						else if (Map[y][x] == 'W') {
+						else if (map[y][x] == 'W') {
 
 							yourHealth -= 20;
 
@@ -141,7 +141,7 @@ int main()
 	}
 
 	system("cls");
-	cout << "You lost" << endl;
+	std::cout << "You lost" << endl;
 
 	system("PAUSE");
 
